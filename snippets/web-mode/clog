@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:clg
+# key: clg
+# --
+console.log('${1:name}', ${2:data});

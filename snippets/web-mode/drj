@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: drj
+# key: drj
+# --
+import React, { PureComponent } from 'react';
+
+class ${1:ReactName} extends PureComponent {
+  state = {
+  }
+
+  render = () => {
+    return (
+       <div>$0</div>
+    );
+  }
+}
+
+export default $1;
