@@ -1,0 +1,2 @@
+# puremacs
+without evil
