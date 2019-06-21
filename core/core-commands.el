@@ -11,7 +11,6 @@
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   (global-set-key (kbd "C-x b") 'helm-buffers-list)
   (global-set-key (kbd "C-s") 'helm-occur)
-  ;; (global-set-key (kbd "C-SPC s") 'helm-grep-do-git-grep)
   (global-set-key (kbd "C-x r") 'helm-show-kill-ring)
   (global-set-key (kbd "C-c g") 'helm-grep-do-git-grep)
   )

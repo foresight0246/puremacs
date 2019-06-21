@@ -4,12 +4,12 @@
   (which-key-setup-side-window-bottom)
   )
 
-(use-package hydra)
+;; (use-package hydra)
 
 ;; set keybinding prefix
 
-(define-prefix-command 'ctl-v-map)
-(global-set-key (kbd "C-v") 'ctl-v-map)
+;; (define-prefix-command 'ctl-v-map)
+;; (global-set-key (kbd "C-v") 'ctl-v-map)
 
 ;; (define-prefix-command 'ctl-f-map)
 ;; (global-set-key (kbd "C-f") 'ctl-f-map)
@@ -54,20 +54,19 @@
 
 (global-set-key (kbd "C-M-o") 'new-previous-line)
 
-(global-set-key (kbd "C-a") 'beginning-of-line-text)
+(global-set-key (kbd "C-a") 'back-to-indentation)
 
 (global-set-key (kbd "C-M-a") 'beginning-of-buffer)
 
 (global-set-key (kbd "C-M-e") 'end-of-buffer)
 ;; 复制
-(global-set-key (kbd "C-y") 'kill-ring-save)
+(global-set-key (kbd "C-y") 'kill-ring-save-region-or-line)
 ;; 粘贴
 (global-set-key (kbd "C-p") 'yank)
 ;; 剪切
 (global-set-key (kbd "C-d") 'delete-char-or-region)
-;; (global-set-key (kbd "C-x C-x") 'kill-region)
 
-(global-set-key (kbd "C-v C-v") 'set-mark-command)
+(global-set-key (kbd "C-v") 'set-mark-command)
 
 (global-set-key (kbd "C-\\") 'indent-region)
 
@@ -78,8 +77,6 @@
 (global-set-key (kbd "C-SPC C-SPC") 'scroll-to-middle)
 
 (global-set-key (kbd "C-r") 'universal-argument)
-
-;; (global-set-key (kbd "C-x v") 'hydra-browse/body)
 
 ;; defun region
 
@@ -115,15 +112,17 @@
     )
   )
 
-(defhydra hydra-browse ()
-  "page view mode"
-  ("j" scroll-down-line)
-  ("k" scroll-up-line)
-  ;; ("j" 'scroll-down-line)
-  ;; ("j" 'scroll-down-line)
+(defun kill-ring-save-region-or-line (beg end)
+  (interactive (list (point) (mark)))
+  (if (region-active-p)
+      (kill-ring-save beg end)
+    (progn
+      (set-mark-command (back-to-indentation))
+      (kill-ring-save (region-beginning) (line-end-position))
+      )
+    )
   )
 
 ;; defun region end
-
 
 (provide 'core-keybindings)

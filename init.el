@@ -18,7 +18,7 @@
 (require 'core-package)
 (require 'core-startup)
 (require 'core-keybindings)
-;; (require 'core-kbdTools)
+(require 'core-org)
 (require 'core-themes)
 (require 'core-commands)
 (require 'core-matching)

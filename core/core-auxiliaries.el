@@ -4,8 +4,7 @@
   ;; (global-set-key "\C-ct" 'google-translate-at-point)
   ;; (global-set-key "\C-cT" 'google-translate-query-translate)
   (global-set-key "\C-xt" 'google-translate-smooth-translate)
+  (setq google-translate-output-destination 'popup)
   )
-
-;; (use-package google-translate-default-ui)
 
 (provide 'core-auxiliaries)
