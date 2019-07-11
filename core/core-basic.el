@@ -1,4 +1,5 @@
-(set-default-font "Source Code Pro 10")
+;; (set-default-font "Source Code Pro 10")
+(set-default-font "Monaco 10")
 ;; Chinese Font
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
