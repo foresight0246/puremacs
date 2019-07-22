@@ -4,6 +4,8 @@
 
 (add-hook 'after-init-hook 'display-startup-echo-area-message)
 
+(use-package esup)
+
 ;; (use-package dashboard
 ;;   :config
 ;;   (dashboard-setup-startup-hook)

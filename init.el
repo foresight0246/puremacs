@@ -20,7 +20,6 @@
 (require 'core-keybindings)
 (require 'core-org)
 (require 'core-themes)
-(require 'core-commands)
 (require 'core-matching)
 (require 'core-manages)
 (require 'core-modeline)

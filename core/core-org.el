@@ -20,6 +20,7 @@
       )
 
 (use-package org-bullets
+  :defer 1
   :hook
   (org-mode . org-bullets-mode)
   )

@@ -1,4 +1,5 @@
 (use-package emmet-mode
+  :defer 1
   :config
   (define-key emmet-mode-keymap (kbd "C-RET") 'emmet-expand-line)
   (define-key emmet-mode-keymap (kbd "C-j") 'next-line)
@@ -6,10 +7,11 @@
   (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
   (add-hook 'html-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode)
-  (add-hook 'css-mode-hook  'emmet-mode)
+  ;; (add-hook 'css-mode-hook  'emmet-mode)
   )
 
 (use-package yasnippet
+  :defer 1
   :init
   :config
   (yas-global-mode 1)
@@ -22,6 +24,7 @@
 ;;   )
 
 (use-package company
+  :defer 1
   :hook
   (after-init . global-company-mode)
   ;; (web-mode . company-mode)
@@ -46,6 +49,7 @@
   )
 
 (use-package lsp-mode
+  :defer 1
   :commands lsp
   :hook
   ;; (go-mode . lsp)
@@ -54,35 +58,44 @@
   )
 
 (use-package lsp-ui
+  :defer 1
   :commands lsp-ui-mode
   :config
   (setq lsp-prefer-flymake nil)
   )
 
 (use-package company-lsp
+  :defer 1
   :commands company-lsp
   :config
   (push 'company-lsp company-backends)
   )
 
 (use-package helm-lsp
+  :defer 1
   :commands helm-lsp-workspace-symbol
   )
 
 (use-package lsp-treemacs
+  :defer 1
   :commands lsp-treemacs-errors-list
   )
 
 (use-package company-go
+  :defer 1
   :config
   (push 'company-go company-backends)
  )
 
 (use-package tide
+  :defer 1
   :hook
-  (web-mode . tide-setup)
-  (web-mode . tide-format-before-save)
-  :config
+  (web-mode . (lambda ()
+                (when (string-equal "js" (file-name-extension buffer-file-name))
+                  (tide-setup))
+                ))
+  ;; (web-mode . tide-format-before-save)
+  ;; :config
   ;; (tide-hl-identifier-mode 1)
   )
 

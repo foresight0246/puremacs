@@ -1,6 +1,7 @@
 (use-package smart-mode-line-atom-one-dark-theme)
 
 (use-package smart-mode-line
+  :defer 1
   :config
   (setq sml/theme 'atom-one-dark)
   (sml/setup)

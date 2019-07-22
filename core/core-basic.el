@@ -34,7 +34,15 @@
 (setq-default indent-tabs-mode nil)
 ;; 记录最近打开文件
 (recentf-mode t)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
+(setq recentf-max-menu-items 10)
+(setq recentf-max-saved-items 10)
+;; 共享剪切板
+;; (setq x-select-enable-clipboard t)
+
+;; 代码折叠
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
+;; 垃圾回收阀值
+(setq gc-cons-threshold (* 50 1000 1000))
 
 (provide 'core-basic)

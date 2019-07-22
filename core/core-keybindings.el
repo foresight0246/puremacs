@@ -8,8 +8,11 @@
 
 ;; set keybinding prefix ---------------------------------------
 
-(define-prefix-command 'ctl-SPC-map)
-(global-set-key (kbd "C-SPC") 'ctl-SPC-map)
+(define-prefix-command 'ctl-z-map)
+(global-set-key (kbd "C-z") 'ctl-z-map)
+
+;; (define-prefix-command 'ctl-SPC-map)
+;; (global-set-key (kbd "C-SPC") 'ctl-SPC-map)
 
 (define-prefix-command 'ctl-w-map)
 (global-set-key (kbd "C-w") 'ctl-w-map)
@@ -27,6 +30,10 @@
 (global-set-key (kbd "M-l") 'forward-word)
 
 (global-set-key (kbd "M-h") 'backward-word)
+;; 向下翻页
+(global-set-key (kbd "M-n") 'scroll-up-command)
+;; 向上翻页
+(global-set-key (kbd "M-p") 'scroll-down-command)
 
 (define-key lisp-interaction-mode-map (kbd "C-j") 'next-line)
 ;; 返回上一步
@@ -36,13 +43,19 @@
 ;; 水平分割窗口
 (global-set-key (kbd "C-w s") 'split-window-vertically)
 ;; 删除当前窗口
-(global-set-key (kbd "C-w k") 'delete-window)
+;; (global-set-key (kbd "C-w k") 'delete-window)
+(global-set-key (kbd "M-w") 'delete-window)
 ;; 删除其他窗口
 (global-set-key (kbd "C-w o") 'delete-other-windows)
+;; 当前行滚动到窗口 top
+(global-set-key (kbd "C-w t") '(lambda () (interactive) (recenter-top-bottom 0)))
+;; 当前行滚动到窗口 bottom
+(global-set-key (kbd "C-w b") '(lambda () (interactive) (recenter-top-bottom -1)))
+;; 当前行滚动到窗口 middle
+(global-set-key (kbd "C-w m") 'scroll-to-middle)
+
 ;; 跳转到指定行号
 (global-set-key (kbd "C-x :") 'goto-line)
-;; 删除整行
-(global-set-key (kbd "M-d") 'kill-whole-line)
 
 (global-set-key (kbd "C-o") 'new-next-line)
 
@@ -59,21 +72,27 @@
 (global-set-key (kbd "C-p") 'yank)
 ;; 剪切
 (global-set-key (kbd "C-d") 'delete-char-or-region)
+;; 删除整行
+(global-set-key (kbd "M-d") 'delete-whole-line)
 
 (global-set-key (kbd "C-v") 'set-mark-command)
 
 (global-set-key (kbd "C-\\") 'indent-region)
 
-(global-set-key (kbd "C-w t") '(lambda () (interactive) (recenter-top-bottom 0)))
-
-(global-set-key (kbd "C-w b") '(lambda () (interactive) (recenter-top-bottom -1)))
-
-(global-set-key (kbd "C-w m") 'scroll-to-middle)
-
 (global-set-key (kbd "C-r") 'universal-argument)
 
-;; defun ---------------------------------------------------------------------
+;; (global-set-key (kbd "C-/") 'comment-line-or-region)
 
+;; 代码折叠 start --------------------------------------------------------------
+
+(global-set-key (kbd "C-z h") 'hs-hide-all)
+(global-set-key (kbd "C-z s") 'hs-show-all)
+(global-set-key (kbd "C-z b") 'hs-toggle-hiding)
+(global-set-key (kbd "C-z l") 'hs-hide-level)
+
+;; 代码折叠 end ----------------------------------------------------------------
+
+;; defun ---------------------------------------------------------------------
 (defun mark-whole-line ()
   (interactive)
   (set-mark-command (back-to-indentation))
@@ -83,9 +102,20 @@
 (defun delete-char-or-region (beg end)
   (interactive (list (point) (mark)))
   (if (region-active-p)
-      (kill-region beg end)
+      (progn
+        (kill-region beg end)
+        (delete-blank-lines)
+        )
     (delete-char 1)
     )
+  )
+
+(defun delete-whole-line ()
+  (interactive)
+  (set-mark-command (back-to-indentation))
+  (end-of-line)
+  (kill-region (region-beginning) (region-end))
+  (delete-blank-lines)
   )
 
 (defun new-next-line ()
@@ -120,6 +150,17 @@
       (set-mark-command (back-to-indentation))
       (kill-ring-save (region-beginning) (line-end-position))
       (goto-char currentPoint)
+      )
+    )
+  )
+
+(defun comment-line-or-region (beg end)
+  (interactive (list (point) (mark)))
+  (if (region-active-p)
+      (comment-region beg end)
+    (progn
+      (comment-line 1)
+      (goto-char beg)
       )
     )
   )
