@@ -1,4 +1,5 @@
 (use-package which-key
+  :defer 1
   :config
   (which-key-mode)
   (which-key-setup-side-window-bottom)
@@ -27,9 +28,9 @@
 
 (global-set-key (kbd "C-l") 'forward-char)
 
-(global-set-key (kbd "M-l") 'forward-word)
+(global-set-key (kbd "C-f") 'forward-word)
 
-(global-set-key (kbd "M-h") 'backward-word)
+(global-set-key (kbd "C-b") 'backward-word)
 ;; 向下翻页
 (global-set-key (kbd "M-n") 'scroll-up-command)
 ;; 向上翻页
@@ -52,7 +53,7 @@
 ;; 当前行滚动到窗口 bottom
 (global-set-key (kbd "C-w b") '(lambda () (interactive) (recenter-top-bottom -1)))
 ;; 当前行滚动到窗口 middle
-(global-set-key (kbd "C-w m") 'scroll-to-middle)
+(global-set-key (kbd "C-w SPC") 'scroll-to-middle)
 
 ;; 跳转到指定行号
 (global-set-key (kbd "C-x :") 'goto-line)

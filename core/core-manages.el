@@ -26,7 +26,7 @@
 (use-package helm-projectile
   :defer 1
   :config
-  (global-set-key (kbd "C-f") 'helm-projectile-grep)
+  (global-set-key (kbd "M-s") 'helm-projectile-grep)
   )
 
 (use-package projectile
