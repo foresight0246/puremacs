@@ -95,12 +95,14 @@
 
 ;; defun ---------------------------------------------------------------------
 (defun mark-whole-line ()
+  "选中整个文档"
   (interactive)
   (set-mark-command (back-to-indentation))
   (end-of-line)
   )
 
 (defun delete-char-or-region (beg end)
+  "删除字符或者选中区域"
   (interactive (list (point) (mark)))
   (if (region-active-p)
       (progn
@@ -112,6 +114,7 @@
   )
 
 (defun delete-whole-line ()
+  "删除行并自动删除空行"
   (interactive)
   (set-mark-command (back-to-indentation))
   (end-of-line)
@@ -120,6 +123,7 @@
   )
 
 (defun new-next-line ()
+  "任意位置向下新建行"
   (interactive)
   (progn
     (move-end-of-line 1)
@@ -128,6 +132,7 @@
   )
 
 (defun new-previous-line ()
+  "任意位置向下新建行"
   (interactive)
   (progn
     (move-beginning-of-line 1)
@@ -137,6 +142,7 @@
   )
 
 (defun scroll-to-middle ()
+  "当前行滚动到屏幕中间"
   (interactive)
   (let ((count (window-height)))
     (recenter-top-bottom (/ count 2))
@@ -144,6 +150,7 @@
   )
 
 (defun kill-ring-save-region-or-line (beg end)
+  "任意位置复制选中区域或当前行"
   (interactive (list (point) (mark)))
   (if (region-active-p)
       (kill-ring-save beg end)
@@ -156,6 +163,7 @@
   )
 
 (defun comment-line-or-region (beg end)
+  "注释行或选中区域"
   (interactive (list (point) (mark)))
   (if (region-active-p)
       (comment-region beg end)
