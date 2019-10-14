@@ -36,4 +36,13 @@
 
 ;; go mode end------------------------------------------------------------------------------------------------
 
+(use-package elpy
+  :init
+  (elpy-enable)
+  :config
+  (set-variable 'python-indent-offset 2)
+  (set-variable 'python-indent-guess-indent-offset nil)
+  )
+
+
 (provide 'core-textModes)

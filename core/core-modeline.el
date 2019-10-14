@@ -10,7 +10,7 @@
 ;; (use-package doom-modeline
 ;;   :hook (after-init . doom-modeline-mode)
 ;;   :config
-;;   ;; (setq doom-modeline-height 18)
+;;   (setq doom-modeline-height 18)
 ;;   (setq doom-modeline-bar-width 2)
 ;;   )
 

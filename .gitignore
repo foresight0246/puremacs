@@ -1,0 +1,7 @@
+*
+!init.el
+!README.md
+!core/
+!custom.el
+!snippets/
+!.gitignore

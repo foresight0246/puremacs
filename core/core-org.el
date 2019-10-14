@@ -19,11 +19,10 @@
         )
       )
 
-(use-package org-bullets
-  :defer 1
-  :hook
-  (org-mode . org-bullets-mode)
-  )
+;; (use-package org-bullets
+;;   :hook
+;;   (org-mode . org-bullets-mode)
+;;   )
 
 (add-hook 'org-mode-hook
           (lambda ()
@@ -36,10 +35,10 @@
             (setq org-log-done 'time)
             (turn-on-visual-line-mode)
             
-            (define-key org-mode-map (kbd "C-j") 'next-line)
-            (define-key org-mode-map (kbd "C-k") 'previous-line)
-            (define-key org-mode-map (kbd "C-y") 'kill-ring-save-region-or-line)
-            (define-key org-mode-map (kbd "C-p") 'yank)
+            ;; (define-key org-mode-map (kbd "C-j") 'next-line)
+            ;; (define-key org-mode-map (kbd "C-k") 'previous-line)
+            (define-key org-mode-map (kbd "M-c") 'kill-ring-save-region-or-line)
+            (define-key org-mode-map (kbd "M-v") 'yank)
             (define-key org-mode-map (kbd "C-a") 'back-to-indentation)
             (define-key org-mode-map (kbd "C-SPC") 'org-todo)
             )

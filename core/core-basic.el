@@ -1,10 +1,10 @@
-;; (set-default-font "Source Code Pro 10")
-(set-default-font "Monaco 10")
+(set-face-attribute 'default nil :font "Inconsolata 15")
 ;; Chinese Font
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
                     charset
-                    (font-spec :family "WenQuanYi Zen Hei Mono" :size 12)))
+                    (font-spec :family "WenQuanYi Micro Hei" :size 13)))
+
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (set-scroll-bar-mode nil)
@@ -44,5 +44,9 @@
 
 ;; 垃圾回收阀值
 (setq gc-cons-threshold (* 50 1000 1000))
+
+;; 修改meta
+(setq mac-option-modifier 'super)
+(setq mac-command-modifier 'meta)
 
 (provide 'core-basic)
